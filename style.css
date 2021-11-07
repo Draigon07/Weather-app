@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    border: 0;
+    outline: none;
+}
+
+body{
+    background-color:#152042;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tittle{
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.container{
+   background-image: url('https://wallpaperaccess.com/full/5202061.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+    padding: 20px;
+    display: flex;
+    width: 400px;
+    height: 600px;
+    justify-content: center;
+    align-items: flex-end;
+    color: aliceblue;
+
+}
+
+
+.block{
+    padding: 20px;
+    color:white;
+    margin: 8px;
+}
+
+
+.temperature_container{
+    position: absolute;
+    top: 150px;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.sub_container{
+    display: flex;
+    height: 55%;
+    width: 100%;
+    flex-direction: column;
+    color:white;
+    font-size: 20px;
+}
+
+.sub_container > div{
+    margin-bottom: 10px;
+    font-family: cursive;
+}
+
