@@ -1,30 +1,50 @@
 
 const APIKey = '9af3af65b3228592f592ccbe93f8720e';
 
-const fetchData = (p)=>{
+const fetchData =  async(p)=>{
     const {latitude, longitude} = p.coords;
-      fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKey}`)
-      .then(response => response.json())
-      .then(data => setWeatherData(data))
-}
+    try{
+        const datos = await axios(`http://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKey}`)
+        const data =  datos.data;
+        const weather = await setWeatherData(data)
+        return weather
+          
+    }catch(e){
+        console.log(e)
 
-
-const setWeatherData = (data)=>{
-    console.log(data);
-    const weatherData = {
-        location: data.name,
-        description: data.weather[0].main,
-        humidity: data.main.humidity,
-        pressure: data.main.pressure,
-        temperature: data.main.temp + 'º',
-        date: getDate()
     }
-    
-    Object.keys(weatherData).forEach(key =>{
-        document.getElementById(key).textContent = `${weatherData[key]}`
-    })
-    
+
 }
+
+
+const setWeatherData = async (data)=>{
+    try{
+        const weatherData = {
+            location: data.name,
+            description: data.weather[0].main,
+            humidity: data.main.humidity,
+            pressure: data.main.pressure,
+            temperature: data.main.temp + 'º',
+            date: getDate()
+        }
+
+         Object.keys(weatherData).forEach(key =>{
+             document.getElementById(key).textContent = `${weatherData[key]}`
+         })
+
+
+    }catch(e){
+        console.log(e)
+
+    }
+    }
+
+   
+
+    
+   
+    
+
 
 const getDate = ()=>{
     let date = new Date();
@@ -32,6 +52,6 @@ const getDate = ()=>{
 }
 
 
-const onload = ()=>{
-    navigator.geolocation.getCurrentPosition(fetchData)
+const onload =  ()=>{
+       return navigator.geolocation.getCurrentPosition(fetchData)    
 }
